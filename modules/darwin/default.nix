@@ -14,7 +14,6 @@ in
   services = {
     lorri.enable = true;
     nix-daemon.enable = true;
-    emacs.enable = true;
   };
 
   environment = {
@@ -32,7 +31,6 @@ in
         pkgs.mosh
         pkgs.ripgrep
         pkgs.shellcheck
-        (R-with-my-packages { inherit pkgs; })
       ];
   };
 
@@ -64,7 +62,7 @@ in
         mru-spaces = false;
         orientation = "left";
         showhidden = true;
-        autohide = false;
+        autohide = true;
         tilesize = 28;
         launchanim = false;
         show-process-indicators = true;
@@ -94,10 +92,6 @@ in
           ShowMountedServersOnDesktop = true;
           ShowRemovableMediaOnDesktop = true;
           _FXSortFoldersFirst = true;
-        };
-        "com.apple.mail" = {
-          # Disable inline attachments (just show the icons)
-          DisableInlineAttachmentViewing = true;
         };
         "com.apple.Safari" = {
           # Privacy: don’t send search queries to Apple
@@ -152,7 +146,6 @@ in
     };
 
     keyboard.enableKeyMapping = true;
-    keyboard.remapCapsLockToControl = true;
   };
 
   security.pam.enableSudoTouchIdAuth = true;

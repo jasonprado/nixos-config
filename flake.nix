@@ -24,7 +24,7 @@
   {
     # Build darwin flake using:
     # $ darwin-rebuild build --flake .#simple
-    darwinConfigurations."visenya" = nix-darwin.lib.darwinSystem {
+    darwinConfigurations."jason-mbp2023" = nix-darwin.lib.darwinSystem {
       specialArgs = { inherit user; };
       modules = [
         home-manager.darwinModules.home-manager

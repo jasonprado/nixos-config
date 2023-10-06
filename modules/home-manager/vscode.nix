@@ -1,73 +1,133 @@
-
+{ pkgs, ... }:
+let
+  marketplace_extensions =
+    (import (builtins.fetchGit {
+      url = "https://github.com/nix-community/nix-vscode-extensions";
+      ref = "refs/heads/master";
+      rev = "6dfad0b36b9cc407e8837b569b996c68840d01f2";
+    })).extensions."aarch64-darwin";
+in
 {
   programs.vscode = {
     enable = true;
     mutableExtensionsDir = false;
     userSettings = {
-      "diffEditor.experimental.useVersion2" = true;
-      "editor.accessibilitySupport" = "off";
-      "editor.fontFamily" = "FantasqueSansM Nerd Font Mono, Menlo, Monaco";
       "editor.formatOnPaste" = true;
       "editor.inlineSuggest.enabled" = true;
       "editor.minimap.autohide" = false;
       "nixEnvSelector.suggestion" = false;
-      "r.bracketedPaste" = false;
-      "r.rterm.mac" = "/run/current-system/sw/bin/radian";
-      "vim.easymotion" = true;
-      "vim.enableNeovim" = true;
-      "vim.sneak" = true;
-      "vim.sneakReplacesF" = true;
-      "vim.statusBarColorControl" = false;
-      "vim.useSystemClipboard" = true;
-      "vim.normalModeKeyBindingsNonRecursive" = [
-        {
-          "before" = [ "g" "D" ];
-          "commands" = [ "editor.action.revealDefinitionAside" ];
-        }
-        {
-          "before" = [ "<space>" ];
-          "commands" = [ "vspacecode.space" ];
-        }
-        {
-          "before" = [ "," ];
-          "commands" = [
-            "vspacecode.space"
-            {
-              "command" = "whichkey.triggerKey";
-              "args" = "m";
-            }
-          ];
-        }
-      ];
-      "vim.visualModeKeyBindingsNonRecursive" = [
-        {
-          "before" = [ "<space>" ];
-          "commands" = [ "vspacecode.space" ];
-        }
-        {
-          "before" = [ ";" ];
-          "commands" = [
-            "vspacecode.space"
-            {
-              "command" = "whichkey.triggerKey";
-              "args" = "m";
-            }
-          ];
-        }
-        {
-          "before" = [ ">" ];
-          "commands" = [ "editor.action.indentLines" ];
-        }
-        {
-          "before" = [ "<" ];
-          "commands" = [ "editor.action.outdentLines" ];
-        }
-      ];
-      "workbench.colorTheme" = "Gruvbox Material Dark";
+
+      "workbench.colorTheme" = "Dark High Contrast";
       "workbench.startupEditor" = "none";
       "vsicons.dontShowNewVersionMessage" = true;
+      "editor.tabSize" = 2;
+      "[typescript]" = {
+        "editor.defaultFormatter" = "vscode.typescript-language-features";
+        "editor.formatOnSave" = true;
+      };
+      "[typescriptreact]" = {
+          "editor.defaultFormatter" = "vscode.typescript-language-features";
+          "editor.formatOnSave" = true;
+      };
+      "[javascript]" = {
+        "editor.defaultFormatter" = "vscode.typescript-language-features";
+      };
+      "explorer.confirmDelete" = false;
+      "terminal.integrated.scrollback" = 5000;
+
+      "terminal.integrated.enableMultiLinePasteWarning" = false;
+      "editor.formatOnSave" = true;
+      "terminal.integrated.allowChords" = false;
+      "[html]" = {
+          "editor.defaultFormatter" = "esbenp.prettier-vscode";
+      };
+      "[jsonc]" = {
+          "editor.defaultFormatter" = "rvest.vs-code-prettier-eslint";
+      };
+      "javascript.updateImportsOnFileMove.enabled" = "always";
+      "typescript.updateImportsOnFileMove.enabled" = "always";
+
+      "github.copilot.enable" = {
+          "*" = true;
+          "plaintext" = true;
+          "markdown" = false;
+          "scminput" = false;
+      };
     };
 
+    keybindings = [
+      {
+          "key" = "ctrl+tab";
+          "command" = "workbench.action.terminal.focus";
+      }
+      {
+          "key" = "ctrl+tab";
+          "command" = "workbench.action.focusActiveEditorGroup";
+          "when" = "terminalFocus";
+      }
+      {
+          "key" = "ctrl+alt+`";
+          "command" = "workbench.action.terminal.focus";
+      }
+      {
+          "key" = "ctrl+alt+`";
+          "command" = "workbench.action.focusActiveEditorGroup";
+          "when" = "terminalFocus";
+      }
+      {
+          "key" = "ctrl+h";
+          "command" = "workbench.action.navigateLeft";
+      }
+      {
+          "key" = "ctrl+l";
+          "command" = "workbench.action.navigateRight";
+      }
+      {
+          "key" = "ctrl+x";
+          "command" = "workbench.action.terminal.focusNext";
+          "when" = "terminalFocus";
+      }
+      {
+          "key" = "shift+ctrl+left";
+          "command" = "maptz.camelcasenavigation.extendCamelLeftCommand";
+          "when" = "editorTextFocus";
+      }
+      {
+          "key" = "shift+ctrl+right";
+          "command" = "maptz.camelcasenavigation.extendCamelRightCommand";
+          "when" = "editorTextFocus";
+      }
+      {
+          "key" = "ctrl+left";
+          "command" = "maptz.camelcasenavigation.moveCamelLeftCommand";
+          "when" = "editorTextFocus";
+      }
+      {
+          "key" = "ctrl+right";
+          "command" = "maptz.camelcasenavigation.moveCamelRightCommand";
+          "when" = "editorTextFocus";
+      }
+      {
+          "key" = "alt+right";
+          "command" = "cursorWordStartRight";
+          "when" = "editorTextFocus";
+      }
+      {
+          "key" = "alt+shift+right";
+          "command" = "cursorWordStartRightSelect";
+          "when" = "editorTextFocus";
+      }
+      {
+          "key" = "alt+left";
+          "command" = "cursorWordStartLeft";
+          "when" = "editorTextFocus";
+      }
+      {
+          "key" = "alt+shift+left";
+          "command" = "cursorWordStartLeftSelect";
+          "when" = "editorTextFocus";
+      }
+    ];
 
     extensions = with pkgs.vscode-extensions; [
       arrterian.nix-env-selector
@@ -87,7 +147,7 @@
       yzhang.markdown-all-in-one
     ] ++ (
       with marketplace_extensions.vscode-marketplace; [
-        camelcasenavigation
+        maptz.camelcasenavigation
         # vspacecode.vspacecode
         # vspacecode.whichkey
         # ms-vscode-remote.remote-containers

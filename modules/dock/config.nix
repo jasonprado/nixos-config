@@ -29,7 +29,7 @@
       options = "--sort dateadded --view list --display stack";
     }
     {
-      path = "/Users/${user}/coding/";
+      path = "/Users/${user}/src/";
       section = "others";
       options = "--sort dateadded --view grid --display folder";
     }
