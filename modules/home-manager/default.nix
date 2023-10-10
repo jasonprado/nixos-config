@@ -34,5 +34,8 @@
     zoxide = {
       enable = true;
     };
+    mosh = {
+      enable = true;
+    }
   };
 }

@@ -5,6 +5,7 @@
     casks = [
       "1password"
       "discord"
+      "element"
       "hammerspoon"
       "obsidian"
       "plexamp"
