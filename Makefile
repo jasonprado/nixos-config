@@ -7,3 +7,7 @@ else
 	sudo nixos-rebuild switch --flake .#
 endif
 
+switch-user:
+	pushd ~/.dotfiles
+	nix build .#homeManagerConfigurations.jasonprado.activationPackage
+	popd

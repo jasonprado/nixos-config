@@ -1,3 +1,4 @@
+{ system }:
 { pkgs, ... }:
 let
   marketplace_extensions =
@@ -5,7 +6,7 @@ let
       url = "https://github.com/nix-community/nix-vscode-extensions";
       ref = "refs/heads/master";
       rev = "6dfad0b36b9cc407e8837b569b996c68840d01f2";
-    })).extensions."aarch64-darwin";
+    })).extensions.${system};
 in
 {
   programs.vscode = {

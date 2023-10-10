@@ -1,10 +1,13 @@
+{ system }:
 { pkgs, ... }:
 {
   imports = [
     ./fzf.nix
     ./git.nix
-    ./vscode.nix
     ./zsh.nix
+    (
+      import ./vscode.nix { inherit system; }
+    )
   ];
   home.stateVersion = "23.11";
   fonts.fontconfig.enable = true;
@@ -34,8 +37,5 @@
     zoxide = {
       enable = true;
     };
-    mosh = {
-      enable = true;
-    }
   };
 }

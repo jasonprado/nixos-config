@@ -12,14 +12,13 @@
   outputs = { self, nixpkgs, nix-darwin, home-manager, ... }:
   let
     user = "jasonprado";
-    system = "aarch64-darwin";
-    pkgs = import nixpkgs {
-        inherit system;
-
-        config = {
-          allowUnfree = true;
-        };
-      };
+#     pkgs = import nixpkgs {
+#         inherit system;
+#
+#         config = {
+#           allowUnfree = true;
+#         };
+#       };
     lib = nixpkgs.lib;
   in 
   {
@@ -28,6 +27,18 @@
 
       modules = [
         ./systems/praxis.nix
+        home-manager.nixosModules.home-manager
+        {
+          home-manager = {
+            useGlobalPkgs = true;
+            useUserPackages = true;
+            users.${user}.imports = [
+              (
+                import ./modules/home-manager { system = "x86_64-linux"; }
+              )
+            ];
+          };
+        }
       ];
 
     };
@@ -52,8 +63,5 @@
         ./modules/darwin
       ];
     };
-
-    # Expose the package set, including overlays, for convenience.
-    darwinPackages = self.darwinConfigurations."Matthews-MacBook-Air".pkgs;
   };
 }
