@@ -20,8 +20,18 @@
           allowUnfree = true;
         };
       };
+    lib = nixpkgs.lib;
   in 
   {
+    nixosConfigurations.praxis = lib.nixosSystem {
+      system = "x86_64-linux";
+
+      modules = [
+        ./systems/praxis.nix
+      ];
+
+    };
+    
     # Build darwin flake using:
     # $ darwin-rebuild build --flake .#simple
     darwinConfigurations."jason-mbp2023" = nix-darwin.lib.darwinSystem {
