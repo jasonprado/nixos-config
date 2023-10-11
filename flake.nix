@@ -27,6 +27,7 @@
 
       modules = [
         ./systems/praxis.nix
+        ./users/${user}/nixos.nix
         home-manager.nixosModules.home-manager
         {
           home-manager = {

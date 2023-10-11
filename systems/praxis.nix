@@ -47,14 +47,34 @@
   services.xserver.enable = true;
 
   # Enable the KDE Plasma Desktop Environment.
-  services.xserver.displayManager.sddm.enable = true;
-  services.xserver.desktopManager.plasma5.enable = true;
+#   services.xserver.displayManager.sddm.enable = true;
+#   services.xserver.desktopManager.plasma5.enable = true;
 
   # Configure keymap in X11
   services.xserver = {
     layout = "us";
     xkbVariant = "";
+
+    desktopManager = {
+      xterm.enable = false;
+    };
+
+    displayManager = {
+        defaultSession = "none+i3";
+        lightdm.enable = true;
+    };
+
+    windowManager.i3 = {
+      enable = true;
+      extraPackages = with pkgs; [
+        dmenu #application launcher most people use
+        i3status # gives you the default i3 status bar
+        i3lock #default i3 screen locker
+        #i3blocks #if you are planning on using i3blocks over i3status
+     ];
+    };
   };
+  programs.dconf.enable = true;
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -79,17 +99,6 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.jasonprado = {
-    isNormalUser = true;
-    description = "Jason Prado";
-    extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [
-      firefox
-      kate
-    ];
-  };
-
   # Enable automatic login for the user.
   services.xserver.displayManager.autoLogin.enable = true;
   services.xserver.displayManager.autoLogin.user = "jasonprado";
@@ -103,6 +112,7 @@
     gnumake
     killall
     vim
+    i3
     wget
     mosh
     tailscale

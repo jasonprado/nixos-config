@@ -7,8 +7,11 @@
     extraGroups = [ "docker" "networkmanager" "wheel" ];
     packages = with pkgs; [
       discord
+      docker
       firefox
+      google-chrome
       kate
+      xkeysnail
     ];
 #     hashedPassword = "tbd";
 #     openssh.authorizedKeys.keys = [
