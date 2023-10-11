@@ -34,6 +34,9 @@
     fzf = {
       enable = true;
     };
+    gpg = {
+      enable = true;
+    };
     zoxide = {
       enable = true;
     };
