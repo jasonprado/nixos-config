@@ -54,6 +54,7 @@ in
           "markdown" = false;
           "scminput" = false;
       };
+      "terminal.integrated.sendKeybindingsToShell" = true;
     };
 
     keybindings = [

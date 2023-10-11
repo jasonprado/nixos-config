@@ -11,6 +11,8 @@
       firefox
       google-chrome
       kate
+      obsidian
+      plexamp
       xkeysnail
     ];
 #     hashedPassword = "tbd";

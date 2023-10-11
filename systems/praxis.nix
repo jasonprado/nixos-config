@@ -76,6 +76,15 @@
   };
   programs.dconf.enable = true;
 
+  fonts = {
+    fontDir.enable = true;
+
+    fonts = [
+      pkgs.fira-code
+      pkgs.jetbrains-mono
+    ];
+  };
+
   # Enable CUPS to print documents.
   services.printing.enable = true;
 

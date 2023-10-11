@@ -1,5 +1,9 @@
 { system }:
 { pkgs, ... }:
+
+let
+  isLinux = system == "x86_64-linux";
+in
 {
   imports = [
     ./fzf.nix
@@ -19,7 +23,9 @@
       yarn
       _1password-gui
       _1password
-    ];
+    ] ++ (if isLinux then [
+      alacritty
+    ] else []);
 
   programs = {
     direnv = {
@@ -43,4 +49,12 @@
       enable = true;
     };
   };
+
+  xdg.configFile = {
+    "bat/config".text = ''
+      --theme="gruvbox-dark"
+    '';
+  } // (if isLinux then {
+    "i3/config".text = builtins.readFile ./i3;
+  } else {});
 }
