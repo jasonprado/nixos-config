@@ -17,6 +17,8 @@
       nodePackages.typescript
       nodejs_20
       yarn
+      _1password-gui
+      _1password
     ];
 
   programs = {

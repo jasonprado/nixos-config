@@ -34,7 +34,7 @@
             useUserPackages = true;
             users.${user}.imports = [
               (
-                import ./modules/home-manager { system = "x86_64-linux"; }
+                import ./users/${user}/home-manager.nix { system = "x86_64-linux"; }
               )
             ];
           };
@@ -53,14 +53,18 @@
           home-manager = {
             useGlobalPkgs = true;
             useUserPackages = true;
-            users.${user}.imports = [ ./modules/home-manager ];
+            users.${user}.imports = [
+              (
+                import ./users/${user}/home-manager.nix { system = "aarch64-darwin"; }
+              )
+            ];
           };
         }
-        ./modules/dock
+        ./users/${user}/darwin
+        ./users/${user}/darwin/dock
         {
           local.dock = (import ./modules/dock/config.nix { user = user; });
         }
-        ./modules/darwin
       ];
     };
   };
