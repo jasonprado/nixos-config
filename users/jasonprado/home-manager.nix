@@ -21,10 +21,12 @@ in
       nodePackages.typescript
       nodejs_20
       yarn
+    ] ++ (if isLinux then [
       _1password-gui
       _1password
-    ] ++ (if isLinux then [
       alacritty
+      rofi
+      slack
     ] else []);
 
   programs = {
@@ -45,6 +47,9 @@ in
     gpg = {
       enable = true;
     };
+    tmux = {
+      enable = true;
+    };
     zoxide = {
       enable = true;
     };
@@ -57,4 +62,10 @@ in
   } // (if isLinux then {
     "i3/config".text = builtins.readFile ./i3;
   } else {});
+
+  home.pointerCursor = {
+    package = pkgs.capitaine-cursors;
+    name = "capitaine-cursors";
+    size = 16;
+  };
 }

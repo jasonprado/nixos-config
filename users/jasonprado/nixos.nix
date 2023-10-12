@@ -1,10 +1,13 @@
 { pkgs, inputs, ... }:
 
 {
+  programs.zsh.enable = true;
+  
   users.users.jasonprado = {
     isNormalUser = true;
     home = "/home/jasonprado";
     extraGroups = [ "docker" "networkmanager" "wheel" ];
+    shell = pkgs.zsh;
     packages = with pkgs; [
       discord
       docker

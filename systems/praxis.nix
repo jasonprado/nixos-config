@@ -79,7 +79,7 @@
   fonts = {
     fontDir.enable = true;
 
-    fonts = [
+    packages = [
       pkgs.fira-code
       pkgs.jetbrains-mono
     ];
@@ -106,7 +106,7 @@
   };
 
   # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
+  services.xserver.libinput.naturalScrolling = true;
 
   # Enable automatic login for the user.
   services.xserver.displayManager.autoLogin.enable = true;
@@ -126,6 +126,7 @@
     mosh
     tailscale
     turbovnc
+    xorg.xev
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
