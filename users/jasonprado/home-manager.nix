@@ -72,5 +72,9 @@ in
     size = 16;
   };
 
-  home.file.".ssh/authorized_keys" = lib.readFile ./ssh-keys;
+  home.file.".ssh/authorized_keys".text = lib.readFile ./ssh-keys;
+  home.file."bin/i3-toggle-scratchpad" = {
+    text = lib.readfile ./bin/i3-toggle-scratchpad;
+    executable = true;
+  };
 }

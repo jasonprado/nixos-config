@@ -207,10 +207,5 @@ bar {
         status_command i3status
 }
 
-
-for_window [instance="dropdown"] floating enable
-for_window [instance="dropdown"] move scratchpad
-for_window [instance="dropdown"] resize set 800 600
-for_window [instance="dropdown"] border pixel 5
-bindsym $mod+grave [instance="dropdown"] scratchpad show
-exec --no-startup-id $term -n dropdown -e tmux
+bindsym $mod+grave exec i3-toggle-scratchpad
+bindsym $mod+p exec i3-toggle-scratchpad
