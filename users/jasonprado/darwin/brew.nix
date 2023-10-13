@@ -12,6 +12,7 @@
       "slack"
       "steam"
       "tailscale"
+      "warp"
       "zoom"
     ];
   };

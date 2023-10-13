@@ -46,7 +46,7 @@
     
     # Build darwin flake using:
     # $ darwin-rebuild build --flake .#simple
-    darwinConfigurations."jason-mbp2023" = nix-darwin.lib.darwinSystem {
+    darwinConfigurations."hegemony" = nix-darwin.lib.darwinSystem {
       specialArgs = { inherit user; };
       modules = [
         home-manager.darwinModules.home-manager
@@ -64,7 +64,7 @@
         ./users/${user}/darwin
         ./users/${user}/darwin/dock
         {
-          local.dock = (import ./modules/dock/config.nix { user = user; });
+          local.dock = (import ./users/${user}/darwin/dock/config.nix { user = user; });
         }
       ];
     };

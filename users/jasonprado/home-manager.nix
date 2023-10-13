@@ -28,6 +28,7 @@ in
       rofi
       slack
     ] else []);
+    ];
 
   programs = {
     direnv = {

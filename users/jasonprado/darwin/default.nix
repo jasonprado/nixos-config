@@ -22,7 +22,6 @@ in
     variables.LANG = "en_US.UTF-8";
     systemPackages =
       [
-        pkgs."_1password"
         pkgs.awscli
         pkgs.coreutils
         pkgs.curl
@@ -81,7 +80,7 @@ in
       };
 
       trackpad = {
-        Clicking = true;
+        Clicking = false;
         TrackpadThreeFingerDrag = true;
       };
 

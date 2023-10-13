@@ -10,6 +10,8 @@
     shell = pkgs.zsh;
     openssh.authorizedKeys.keys = lib.attrsets.attrValues (import ./ssh-keys.nix);
     packages = with pkgs; [
+      _1password-gui
+      _1password
       bc
       discord
       docker

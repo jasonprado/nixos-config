@@ -2,7 +2,7 @@ UNAME := $(shell uname)
 
 switch:
 ifeq ($(UNAME), Darwin)
-	echo "Don't know how to switch darwin yet"
+	nix run nix-darwin -- switch --flake ".#"
 else
 	sudo nixos-rebuild switch --flake .#
 endif
