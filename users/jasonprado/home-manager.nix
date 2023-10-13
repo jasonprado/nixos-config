@@ -74,7 +74,7 @@ in
 
   home.file.".ssh/authorized_keys".text = lib.readFile ./ssh-keys;
   home.file."bin/i3-toggle-scratchpad" = {
-    text = lib.readfile ./bin/i3-toggle-scratchpad;
+    text = lib.readFile ./bin/i3-toggle-scratchpad;
     executable = true;
   };
 }
