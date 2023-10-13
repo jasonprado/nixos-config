@@ -1,5 +1,5 @@
 { system }:
-{ pkgs, ... }:
+{ lib, pkgs, ... }:
 
 let
   isLinux = system == "x86_64-linux";
@@ -47,6 +47,9 @@ in
     gpg = {
       enable = true;
     };
+    jq = {
+      enable = true;
+    };
     tmux = {
       enable = true;
     };
@@ -68,4 +71,6 @@ in
     name = "capitaine-cursors";
     size = 16;
   };
+
+  home.file.".ssh/authorized_keys" = lib.readFile ./ssh-keys;
 }

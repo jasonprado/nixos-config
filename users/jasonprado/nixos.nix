@@ -16,6 +16,7 @@
       kate
       obsidian
       plexamp
+      synergy
       xkeysnail
     ];
 #     hashedPassword = "tbd";
