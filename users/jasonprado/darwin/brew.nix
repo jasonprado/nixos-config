@@ -14,7 +14,14 @@
       "tailscale"
       "warp"
       "zoom"
-      "MisterTea/et/et"
+    ];
+    brews = [
+      {
+        name = "mistertea/et/et";
+        start_service = true;
+        restart_service = "changed";
+        link = true;
+      }
     ];
   };
 }

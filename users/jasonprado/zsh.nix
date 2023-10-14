@@ -7,6 +7,11 @@
     syntaxHighlighting = {
       enable = true;
     };
+    envExtra = ''
+      if [[ $(uname) == 'Darwin' ]]; then
+        eval "$(/opt/homebrew/bin/brew shellenv)"
+      fi
+    '';
     shellAliases = {
       ll = "ls -l";
       update = "darwin-rebuild switch --flake ~/.nixpkgs";
