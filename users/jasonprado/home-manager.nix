@@ -57,7 +57,6 @@ in
     tmux = {
       enable = true;
       extraConfig = ''
-        set -g mouse on
         set-option -g set-titles on
         set-option -g set-titles-string "#{window_name}"
       '';
