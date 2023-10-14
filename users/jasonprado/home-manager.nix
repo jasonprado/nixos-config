@@ -14,6 +14,7 @@ in
     )
   ];
   home.stateVersion = "23.11";
+
   fonts.fontconfig.enable = true;
 
   home.packages = with pkgs;
