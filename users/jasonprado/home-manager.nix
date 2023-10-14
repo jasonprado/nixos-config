@@ -20,6 +20,7 @@ in
   home.packages = with pkgs;
     [
       eternal-terminal
+      
       nodePackages.typescript
       nodejs_20
       yarn
