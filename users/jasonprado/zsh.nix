@@ -14,6 +14,7 @@
       xcc = "rm -rf ~/Library/Developer/Xcode/DerivedData/*";
       odd = "open ~/Library/Developer/Xcode/DerivedData/";
       fdd = "find ~/Library/Developer/Xcode/DerivedData/* -name";
+      mosh = "mosh --predict=never";
     };
     oh-my-zsh = {
       enable = true;

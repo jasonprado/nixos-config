@@ -18,6 +18,7 @@ in
 
   home.packages = with pkgs;
     [
+      eternal-terminal
       nodePackages.typescript
       nodejs_20
       yarn
@@ -28,7 +29,6 @@ in
       rofi
       slack
     ] else []);
-    ];
 
   programs = {
     direnv = {
@@ -56,6 +56,11 @@ in
     };
     tmux = {
       enable = true;
+      extraConfig = ''
+        set -g mouse on
+        set-option -g set-titles on
+        set-option -g set-titles-string "#{window_name}"
+      '';
     };
     zoxide = {
       enable = true;
@@ -66,13 +71,15 @@ in
     "bat/config".text = ''
       --theme="gruvbox-dark"
     '';
-  } // (if isLinux then {
+  };
+} // (if isLinux then {
+  xdg.configFile = {
     "i3/config".text = builtins.readFile ./i3;
-  } else {});
+  };
 
   home.pointerCursor = {
     package = pkgs.capitaine-cursors;
     name = "capitaine-cursors";
     size = 16;
   };
-}
+} else {})

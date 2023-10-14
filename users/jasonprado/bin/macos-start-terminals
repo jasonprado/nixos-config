@@ -1,0 +1,9 @@
+#!/bin/bash
+
+tmux new-session -d -s hotkey -n local
+
+tmux new-window -d -n praxis -t hotkey:1
+tmux send-keys -t hotkey:1 'mosh praxis' C-m
+
+export TITLE="tmux_control"
+tmux -CC attach -t hotkey
