@@ -1,4 +1,4 @@
-{ pkgs, lib, user, ... }:
+{ pkgs, lib, user, writeShellScriptBin, ... }:
 let
   my-python-packages = ps: with ps; [
     pandas
@@ -30,6 +30,7 @@ in
         pkgs.mosh
         pkgs.ripgrep
         pkgs.shellcheck
+        (pkgs.writeShellScriptBin "macos-start-terminals" (lib.readFile ./bin/macos-start-terminals))
       ];
   };
 
