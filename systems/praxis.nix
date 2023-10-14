@@ -124,6 +124,7 @@
     i3
     wget
     mosh
+    python311
     tailscale
     turbovnc
     xorg.xev

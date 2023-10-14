@@ -50,6 +50,9 @@ in
     jq = {
       enable = true;
     };
+    lf = {
+      enable = true;
+    };
     tmux = {
       enable = true;
     };
@@ -70,11 +73,5 @@ in
     package = pkgs.capitaine-cursors;
     name = "capitaine-cursors";
     size = 16;
-  };
-
-  home.file.".ssh/authorized_keys".text = lib.readFile ./ssh-keys;
-  home.file."bin/i3-toggle-scratchpad" = {
-    text = lib.readFile ./bin/i3-toggle-scratchpad;
-    executable = true;
   };
 }

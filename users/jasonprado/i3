@@ -207,5 +207,6 @@ bar {
         status_command i3status
 }
 
-bindsym $mod+grave exec i3-toggle-scratchpad
-bindsym $mod+p exec i3-toggle-scratchpad
+for_window [class="scratchterm"] move scratchpad
+exec_always --no-startup-id i3-toggle-scratchpad
+bindsym $mod+grave exec --no-startup-id i3-toggle-scratchpad
