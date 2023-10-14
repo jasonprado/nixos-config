@@ -33,11 +33,7 @@
           home-manager = {
             useGlobalPkgs = true;
             useUserPackages = true;
-            users.${user}.imports = [
-              (
-                import ./users/${user}/home-manager.nix { system = "x86_64-linux"; }
-              )
-            ];
+            users.${user} = (import ./users/${user}/home-manager.nix { system = "x86_64-linux"; });
           };
         }
       ];
@@ -54,11 +50,7 @@
           home-manager = {
             useGlobalPkgs = true;
             useUserPackages = true;
-            users.${user}.imports = [
-              (
-                import ./users/${user}/home-manager.nix { system = "aarch64-darwin"; }
-              )
-            ];
+            users.${user} = (import ./users/${user}/home-manager.nix { system = "aarch64-darwin"; });
           };
         }
         ./users/${user}/darwin
