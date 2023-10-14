@@ -14,6 +14,7 @@
       "tailscale"
       "warp"
       "zoom"
+      "MisterTea/et/et"
     ];
   };
 }

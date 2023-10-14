@@ -28,7 +28,6 @@
       modules = [
         ./systems/praxis.nix
         ./users/${user}/nixos.nix
-        home-manager.nixosModules.home-manager
         {
           home-manager = {
             useGlobalPkgs = true;
@@ -36,6 +35,7 @@
             users.${user} = (import ./users/${user}/home-manager.nix { system = "x86_64-linux"; });
           };
         }
+        home-manager.nixosModules.home-manager
       ];
 
     };

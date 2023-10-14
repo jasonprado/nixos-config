@@ -33,5 +33,4 @@
     ];
     # hashedPassword = "tbd";
   };
-  home-manager.users.jasonprado.home.stateVersion = "23.11";
 }

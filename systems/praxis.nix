@@ -118,6 +118,7 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    eternal-terminal
     gnumake
     killall
     vim
@@ -146,11 +147,18 @@
   security.sudo.wheelNeedsPassword = false;
 
   services.tailscale.enable = true;
-    networking.firewall.allowedUDPPorts = [
+  networking.firewall.allowedUDPPorts = [
     60001
     60002
     config.services.tailscale.port
   ];
+  networking.firewall.allowedTCPPorts = [
+    config.services.eternal-terminal.port
+  ];
+
+  services.eternal-terminal = {
+    enable = true;
+  };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

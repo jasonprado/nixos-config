@@ -4,7 +4,7 @@ switch:
 ifeq ($(UNAME), Darwin)
 	nix run nix-darwin -- switch --flake ".#"
 else
-	sudo nixos-rebuild switch --flake .#
+	sudo nixos-rebuild switch --show-trace --flake ".#"
 endif
 
 switch-user:
