@@ -30,7 +30,7 @@ in
         pkgs.mosh
         pkgs.ripgrep
         pkgs.shellcheck
-        (pkgs.writeShellScriptBin "macos-start-terminals" (lib.readFile ./bin/macos-start-terminals))
+        (pkgs.writeShellScriptBin "macos-start-terminals" (lib.readFile ../bin/macos-start-terminals))
       ];
   };
 

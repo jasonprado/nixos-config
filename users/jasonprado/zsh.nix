@@ -20,6 +20,10 @@
       odd = "open ~/Library/Developer/Xcode/DerivedData/";
       fdd = "find ~/Library/Developer/Xcode/DerivedData/* -name";
       mosh = "mosh --predict=never";
+
+      # boxes
+      prax = "et praxist";
+      heg = "et hegemony";
     };
     oh-my-zsh = {
       enable = true;
