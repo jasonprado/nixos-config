@@ -17,6 +17,7 @@ in
       "editor.inlineSuggest.enabled" = true;
       "editor.minimap.autohide" = false;
       "nixEnvSelector.suggestion" = false;
+      "workbench.editor.enablePreview" = false;
 
       "workbench.colorTheme" = "Dark High Contrast";
       "workbench.startupEditor" = "none";
@@ -145,10 +146,12 @@ in
       ms-python.python
       ms-python.vscode-pylance
       ms-vscode-remote.remote-containers
+      ms-vscode-remote.remote-ssh
       wmaurer.change-case
       yzhang.markdown-all-in-one
     ] ++ (
       with marketplace_extensions.vscode-marketplace; [
+        dnicolson.binary-plist
         maptz.camelcasenavigation
         # vspacecode.vspacecode
         # vspacecode.whichkey
