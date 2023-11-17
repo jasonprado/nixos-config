@@ -15,6 +15,7 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   boot.initrd.luks.devices."luks-8fc7f13b-5114-4641-809e-127012324396".device = "/dev/disk/by-uuid/8fc7f13b-5114-4641-809e-127012324396";
+  services.resolved.enable = true;
   networking.hostName = "praxis";
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
@@ -24,6 +25,7 @@
 
   # Enable networking
   networking.networkmanager.enable = true;
+  networking.networkmanager.connectionConfig."connection.mdns" = 2;
 
   # Set your time zone.
   time.timeZone = "America/Los_Angeles";
@@ -128,6 +130,7 @@
     python311
     tailscale
     turbovnc
+    udiskie
     xorg.xev
   ];
 
@@ -159,6 +162,35 @@
   services.eternal-terminal = {
     enable = true;
   };
+
+  services.avahi = {
+    enable = true;
+    nssmdns = true;
+    openFirewall = true;
+  };
+
+  services.udisks2.enable = true;
+
+  virtualisation.docker.enable = true;
+
+  location = {
+    provider = "manual";
+    latitude = 37.767908525563215;
+    longitude = -122.41896818465868;
+  };
+
+  services.redshift = {
+    enable = true;
+    brightness = {
+      day = "1";
+      night = "1";
+    };
+    temperature = {
+      day = 5500;
+      night = 3700;
+    };
+  };
+
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

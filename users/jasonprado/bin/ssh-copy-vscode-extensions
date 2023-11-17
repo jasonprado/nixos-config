@@ -1,0 +1,16 @@
+#!/bin/bash
+
+HOST=$1
+PORT=${2:-22}
+
+set -x
+
+REMOTE_USER=$(ssh $HOST -p $PORT "echo \$USER")
+REMOTE_HOME_DIR_PATH=$(ssh $HOST -p $PORT "echo \$HOME")
+REMOTE_HOME_DIR_PATH_ESCAPED_FOR_SED=$(echo $REMOTE_HOME_DIR_PATH | sed 's/\//\\\//g')
+
+rsync -avz --copy-links --chown="$REMOTE_USER:$REMOTE_USER" -e "ssh -p $PORT" ~/.vscode/extensions/* $HOST:.vscode-server/extensions/
+
+ssh $HOST -p $PORT "chmod -R +w $REMOTE_HOME_DIR_PATH/.vscode-server/extensions"
+sed -e "s/\/nix\/store\/[^\/]*\/share\/vscode\/extensions\//$REMOTE_HOME_DIR_PATH_ESCAPED_FOR_SED\/.vscode-server\/extensions\//g" ~/.vscode/extensions/extensions.json > /tmp/extensions.json
+scp -P $PORT /tmp/extensions.json $HOST:$REMOTE_HOME_DIR_PATH/.vscode-server/extensions/extensions.json

@@ -36,6 +36,7 @@ in
 
     home.packages = with pkgs;
       [
+        btop
         nodePackages.typescript
         nodejs_20
         yarn
@@ -43,6 +44,9 @@ in
         _1password-gui
         _1password
         alacritty
+        cura
+        inetutils
+        inkscape-with-extensions
         rofi
         slack
       ] else []);
