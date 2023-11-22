@@ -93,6 +93,11 @@
   # Enable sound with pipewire.
   sound.enable = true;
   hardware.pulseaudio.enable = false;
+  hardware.pulseaudio.extraConfig = [
+    "load-module module-combine-sink"
+    "unload-module module-suspend-on-idle"
+  ];
+
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -121,17 +126,21 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     eternal-terminal
+    glances
     gnumake
     killall
     vim
     i3
     wget
     mosh
+    pulseaudio
     python311
+    qpaeq
     tailscale
     turbovnc
     udiskie
     xorg.xev
+    gnome.gnome-keyring
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -157,6 +166,7 @@
   ];
   networking.firewall.allowedTCPPorts = [
     config.services.eternal-terminal.port
+    61208  # glances
   ];
 
   services.eternal-terminal = {
@@ -190,6 +200,24 @@
       night = 3700;
     };
   };
+
+  systemd.services.glances = {
+    enable = true;
+    description = "Run glances webserver";
+    unitConfig = {
+      Type = "simple";
+    };
+    serviceConfig = {
+      ExecStart = "${pkgs.glances}/bin/glances -w";
+    };
+    after = ["network.target"];
+    wantedBy = [ "multi-user.target" ];
+  };
+
+  services.xserver.displayManager.sessionCommands = ''
+    eval $(gnome-keyring-daemon --daemonize)
+    export SSH_AUTH_SOCK
+  '';
 
 
   # This value determines the NixOS release from which the default

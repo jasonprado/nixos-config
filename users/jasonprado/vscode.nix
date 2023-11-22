@@ -11,7 +11,7 @@ in
 {
   programs.vscode = {
     enable = true;
-    mutableExtensionsDir = false;
+    mutableExtensionsDir = true;
     userSettings = {
       "editor.formatOnPaste" = true;
       "editor.inlineSuggest.enabled" = true;

@@ -6,7 +6,7 @@
   users.users.jasonprado = {
     isNormalUser = true;
     home = "/home/jasonprado";
-    extraGroups = [ "docker" "networkmanager" "wheel" ];
+    extraGroups = [ "audio" "docker" "networkmanager" "wheel" ];
     shell = pkgs.zsh;
     openssh.authorizedKeys.keys = lib.attrsets.attrValues (import ./ssh-keys.nix);
     packages = with pkgs; [
@@ -18,9 +18,12 @@
       firefox
       google-chrome
       kate
+      maim
       obsidian
+      openssl
       plexamp
       synergy
+      xclip
       xkeysnail
 
       (python311.withPackages(ps: with ps; [

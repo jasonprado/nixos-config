@@ -37,6 +37,7 @@ in
     home.packages = with pkgs;
       [
         btop
+        glances
         nodePackages.typescript
         nodejs_20
         yarn
@@ -96,6 +97,7 @@ in
   (if isLinux then {
     xdg.configFile = {
       "i3/config".text = builtins.readFile ./i3;
+      "i3status/config".text = builtins.readFile ./i3status;
     };
 
     home.pointerCursor = {
