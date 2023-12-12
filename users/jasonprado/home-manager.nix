@@ -10,14 +10,29 @@ in
       ./fzf.nix
       ./git.nix
       ./zsh.nix
-      (
-        import ./vscode.nix { inherit system; }
-      )
+      # VSCode managed by nix is full of headaches.
+      # (
+      #   import ./vscode.nix { inherit system; }
+      # )
     ];
 
     home.stateVersion = "23.05";
 
     fonts.fontconfig.enable = true;
+
+    launchd.agents.glances = {
+      enable = true;
+      config = {
+        Label = "glances";
+
+        ProgramArguments = [
+          "${pkgs.glances}/bin/glances"
+          "-w"
+        ];
+
+        StandardErrorPath = "/Users/jasonprado/.local/state/launchd/logs/glances.stderr";
+      };
+    };
 
     home.packages = with pkgs;
       [

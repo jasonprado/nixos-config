@@ -30,6 +30,8 @@ in
         pkgs.mosh
         pkgs.ripgrep
         pkgs.shellcheck
+        pkgs.python39
+        pkgs.glances
         (pkgs.writeShellScriptBin "macos-start-terminals" (lib.readFile ../bin/macos-start-terminals))
       ];
   };
@@ -59,6 +61,7 @@ in
       };
 
       dock = {
+        # no-bounce = true;
         mru-spaces = false;
         orientation = "left";
         showhidden = true;
@@ -149,7 +152,7 @@ in
   };
 
   security.pam.enableSudoTouchIdAuth = true;
-  
+
   nixpkgs = {
     hostPlatform = "aarch64-darwin";
     config.allowUnfree = true;
