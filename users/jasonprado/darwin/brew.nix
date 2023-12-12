@@ -15,13 +15,13 @@
       "warp"
       "zoom"
     ];
-    brews = [
-      {
-        name = "mistertea/et/et";
-        start_service = true;
-        restart_service = "changed";
-        link = true;
-      }
-    ];
+    # brews = [
+    #   {
+    #     name = "mistertea/et/et";
+    #     start_service = true;
+    #     restart_service = "changed";
+    #     link = true;
+    #   }
+    # ];
   };
 }

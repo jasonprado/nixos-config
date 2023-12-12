@@ -7,7 +7,6 @@ let
   ];
 in
 {
-  imports = [ ./brew.nix ];
   programs.zsh.enable = true;
   users.users.${user}.home = "/Users/${user}";
 

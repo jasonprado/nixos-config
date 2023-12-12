@@ -1,10 +1,11 @@
-{ system }:
+{ system, isPersonal }:
 { lib, pkgs, ... }:
 
 let
   isLinux = system == "x86_64-linux";
 in
   lib.recursiveUpdate
+  (lib.recursiveUpdate
   {
     imports = [
       ./fzf.nix
@@ -19,21 +20,6 @@ in
     home.stateVersion = "23.05";
 
     fonts.fontconfig.enable = true;
-
-    launchd.agents.glances = {
-      enable = true;
-      config = {
-        Label = "glances";
-
-        ProgramArguments = [
-          "${pkgs.glances}/bin/glances"
-          "-w"
-        ];
-
-        StandardErrorPath = "/Users/jasonprado/.local/state/launchd/logs/glances.stderr";
-      };
-    };
-
     home.packages = with pkgs;
       [
         btop
@@ -101,6 +87,21 @@ in
       '';
     };
   }
+  (if isPersonal then {
+    launchd.agents.glances = {
+      enable = true;
+      config = {
+        Label = "glances";
+
+        ProgramArguments = [
+          "${pkgs.glances}/bin/glances"
+          "-w"
+        ];
+
+        StandardErrorPath = "/Users/jasonprado/.local/state/launchd/logs/glances.stderr";
+      };
+    };
+  } else {}))
 
   (if isLinux then {
     xdg.configFile = {

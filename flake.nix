@@ -11,18 +11,13 @@
 
   outputs = { self, nixpkgs, nix-darwin, home-manager, ... }:
   let
-    user = "jasonprado";
-#     pkgs = import nixpkgs {
-#         inherit system;
-#
-#         config = {
-#           allowUnfree = true;
-#         };
-#       };
     lib = nixpkgs.lib;
   in 
   {
-    nixosConfigurations.praxis = lib.nixosSystem {
+    nixosConfigurations.praxis = 
+    let
+      user = "jasonprado";
+    in lib.nixosSystem {
       system = "x86_64-linux";
 
       modules = [
@@ -32,7 +27,7 @@
           home-manager = {
             useGlobalPkgs = true;
             useUserPackages = true;
-            users.${user} = (import ./users/${user}/home-manager.nix { system = "x86_64-linux"; });
+            users.${user} = (import ./users/${user}/home-manager.nix { system = "x86_64-linux"; isPersonal = true; });
           };
         }
         home-manager.nixosModules.home-manager
@@ -42,7 +37,10 @@
     
     # Build darwin flake using:
     # $ darwin-rebuild build --flake .#simple
-    darwinConfigurations."hegemony-2" = nix-darwin.lib.darwinSystem {
+    darwinConfigurations."hegemony" = 
+    let
+      user = "jasonprado";
+    in nix-darwin.lib.darwinSystem {
       specialArgs = { inherit user; };
       modules = [
         home-manager.darwinModules.home-manager
@@ -50,7 +48,7 @@
           home-manager = {
             useGlobalPkgs = true;
             useUserPackages = true;
-            users.${user} = (import ./users/${user}/home-manager.nix { system = "aarch64-darwin"; });
+            users.${user} = (import ./users/${user}/home-manager.nix { system = "aarch64-darwin"; isPersonal = true; });
           };
         }
         ./users/${user}/darwin
@@ -58,6 +56,25 @@
         {
           local.dock = (import ./users/${user}/darwin/dock/config.nix { user = user; });
         }
+        ./users/${user}/darwin/brew
+      ];
+    };
+
+    darwinConfigurations."HDWX4TX7D5" = 
+    let
+      user = "jason.prado";
+    in nix-darwin.lib.darwinSystem {
+      specialArgs = { inherit user; };
+      modules = [
+        home-manager.darwinModules.home-manager
+        {
+          home-manager = {
+            useGlobalPkgs = true;
+            useUserPackages = true;
+            users.${user} = (import ./users/jasonprado/home-manager.nix { system = "aarch64-darwin"; isPersonal = false; });
+          };
+        }
+        ./users/${user}/darwin
       ];
     };
   };
