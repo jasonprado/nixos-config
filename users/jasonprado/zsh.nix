@@ -25,6 +25,9 @@
       prax = "et praxist";
       heg = "et hegemony";
     };
+    sessionVariables = {
+      EDITOR = "code -w";
+    };
     oh-my-zsh = {
       enable = true;
       plugins = [

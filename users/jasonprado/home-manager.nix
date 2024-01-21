@@ -42,6 +42,7 @@ in
         nodePackages.typescript
         nodejs_20
         vlc
+        renameutils
         yarn
       ] ++ (if isLinux then [
         _1password-gui

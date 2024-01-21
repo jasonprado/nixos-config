@@ -42,7 +42,7 @@
     
     # Build darwin flake using:
     # $ darwin-rebuild build --flake .#simple
-    darwinConfigurations."hegemony" = nix-darwin.lib.darwinSystem {
+    darwinConfigurations."hegemony-2" = nix-darwin.lib.darwinSystem {
       specialArgs = { inherit user; };
       modules = [
         home-manager.darwinModules.home-manager
