@@ -21,7 +21,7 @@ in
     variables.LANG = "en_US.UTF-8";
     systemPackages =
       [
-        pkgs.awscli
+        pkgs.awscli2
         pkgs.coreutils
         pkgs.curl
         pkgs.ffmpeg
@@ -29,7 +29,7 @@ in
         pkgs.mosh
         pkgs.ripgrep
         pkgs.shellcheck
-        pkgs.python39
+        pkgs.python311
         pkgs.glances
         (pkgs.writeShellScriptBin "macos-start-terminals" (lib.readFile ../bin/macos-start-terminals))
       ];

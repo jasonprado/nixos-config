@@ -62,6 +62,7 @@
 
     darwinConfigurations."HDWX4TX7D5" = 
     let
+      configUser = "jasonprado";
       user = "jason.prado";
     in nix-darwin.lib.darwinSystem {
       specialArgs = { inherit user; };
@@ -71,10 +72,14 @@
           home-manager = {
             useGlobalPkgs = true;
             useUserPackages = true;
+<<<<<<< HEAD
             users.${user} = (import ./users/jasonprado/home-manager.nix { system = "aarch64-darwin"; isPersonal = false; });
+=======
+            users.${user} = (import ./users/${configUser}/home-manager.nix { system = "aarch64-darwin"; isPersonal = false; });
+>>>>>>> 49ead80 (april)
           };
         }
-        ./users/${user}/darwin
+        ./users/${configUser}/darwin
       ];
     };
   };

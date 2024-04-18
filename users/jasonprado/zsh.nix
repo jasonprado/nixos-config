@@ -11,6 +11,14 @@
       if [[ $(uname) == 'Darwin' ]]; then
         eval "$(/opt/homebrew/bin/brew shellenv)"
       fi
+      # if ~/src/experiments/ivanwang/scripts/chaws.sh exists, source it
+      if [ -f ~/src/bin/chaws.sh ]; then
+        source ~/src/bin/chaws.sh
+      fi
+      AWS_CONFIG_FILE="$HOME/src/cloud/build_tools/aws_configs/cloud_config"
+      if [ -f "$AWS_CONFIG_FILE" ]; then
+        export AWS_CONFIG_FILE="$AWS_CONFIG_FILE"
+      fi
     '';
     shellAliases = {
       ll = "ls -l";
@@ -40,6 +48,7 @@
         "git"
         "git-lfs"
         "github"
+        "kubectl"
         "python"
         "ssh-agent"
         "vscode"

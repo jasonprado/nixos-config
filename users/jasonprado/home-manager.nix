@@ -22,18 +22,26 @@ in
     fonts.fontconfig.enable = true;
     home.packages = with pkgs;
       [
+        bazel-buildtools
         btop
-        devenv
-        glances
         cargo
+        devenv
         gh
+        glances
+        google-cloud-sdk
+        kubectl
+        kubernetes-helm
+        nodejs_20
+        nodePackages.aws-cdk
         nodePackages.pnpm
         nodePackages.typescript
-        nodejs_20
-        vlc
         renameutils
+        ruff
         rustc
+        vlc
         yarn
+        yq
+        zulu8
       ] ++ (if isLinux then [
         _1password-gui
         _1password
@@ -58,6 +66,22 @@ in
         };
       };
       fzf = {
+        enable = true;
+      };
+      gh = {
+        enable = true;
+        settings = {
+          git_protocol = "https";
+
+          prompt = "enabled";
+
+          aliases = {
+            co = "pr checkout";
+            pv = "pr view";
+          };
+        };
+      };
+      go = {
         enable = true;
       };
       gpg = {
