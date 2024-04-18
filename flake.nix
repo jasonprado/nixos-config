@@ -72,11 +72,7 @@
           home-manager = {
             useGlobalPkgs = true;
             useUserPackages = true;
-<<<<<<< HEAD
-            users.${user} = (import ./users/jasonprado/home-manager.nix { system = "aarch64-darwin"; isPersonal = false; });
-=======
             users.${user} = (import ./users/${configUser}/home-manager.nix { system = "aarch64-darwin"; isPersonal = false; });
->>>>>>> 49ead80 (april)
           };
         }
         ./users/${configUser}/darwin
