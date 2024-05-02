@@ -56,6 +56,11 @@ in
           "scminput" = false;
       };
       "terminal.integrated.sendKeybindingsToShell" = true;
+      "terminal.integrated.commandsToSkipShell" = [
+        "workbench.action.quickOpen"
+        "workbench.action.terminal.focusFind"
+        "workbench.action.focusActiveEditorGroup"
+      ];
     };
 
     keybindings = [

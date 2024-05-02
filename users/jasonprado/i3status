@@ -1,30 +1,25 @@
 general {
-        output_format = "dzen2"
+        output_format = "i3bar"
         colors = true
         interval = 5
 }
 
 order += "disk /"
-order += "run_watch DHCP"
-order += "ethernet eth0"
-order += "cpu_temperature 0"
+order += "ethernet enp86s0"
+order += "ethernet tailscale0"
 order += "memory"
 order += "load"
 order += "tztime local"
 order += "volume master"
 
-ethernet eth0 {
+ethernet enp86s0 {
         format_up = "E: %ip (%speed)"
         format_down = "E: down"
 }
 
-run_watch DHCP {
-        pidfile = "/var/run/dhclient*.pid"
-}
-
-path_exists VPN {
-        # path exists when a VPN tunnel launched by nmcli/nm-applet is active
-        path = "/proc/sys/net/ipv4/conf/tun0"
+ethernet tailscale0 {
+        format_up = "T: %ip"
+        format_down = "T: down"
 }
 
 tztime local {
@@ -34,11 +29,6 @@ tztime local {
 
 load {
         format = "%5min"
-}
-
-cpu_temperature 0 {
-        format = "T: %degrees °C"
-        path = "/sys/devices/platform/coretemp.0/temp1_input"
 }
 
 memory {

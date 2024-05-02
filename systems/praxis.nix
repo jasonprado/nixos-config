@@ -93,10 +93,6 @@
   # Enable sound with pipewire.
   sound.enable = true;
   hardware.pulseaudio.enable = false;
-  hardware.pulseaudio.extraConfig = [
-    "load-module module-combine-sink"
-    "unload-module module-suspend-on-idle"
-  ];
 
   security.rtkit.enable = true;
   services.pipewire = {
@@ -166,6 +162,7 @@
   ];
   networking.firewall.allowedTCPPorts = [
     config.services.eternal-terminal.port
+    32500  # plexamp
     61208  # glances
   ];
 
@@ -219,7 +216,20 @@
     export SSH_AUTH_SOCK
   '';
 
+  environment.etc.
+  "wireplumber/main.lua.d/98-alsa-dontsleep.lua".text = ''
+    alsa_monitor.rules = {
+      {
+        matches = {{{ "node.name", "matches", "alsa_output.*" }}};
+        apply_properties = {
+          ["session.suspend-timeout-seconds"] = 0;
+        },
+      },
+    }
+  '';
 
+  systemd.network.wait-online.enable = false;
+  boot.initrd.systemd.network.wait-online.enable = false;
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It‘s perfectly fine and recommended to leave

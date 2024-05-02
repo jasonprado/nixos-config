@@ -37,9 +37,11 @@ in
     home.packages = with pkgs;
       [
         btop
+        devenv
         glances
         nodePackages.typescript
         nodejs_20
+        vlc
         yarn
       ] ++ (if isLinux then [
         _1password-gui
@@ -94,6 +96,7 @@ in
       '';
     };
   }
+
   (if isLinux then {
     xdg.configFile = {
       "i3/config".text = builtins.readFile ./i3;
