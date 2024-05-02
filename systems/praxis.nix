@@ -14,6 +14,9 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
+  systemd.network.wait-online.enable = false;
+  boot.initrd.systemd.network.wait-online.enable = false;
+
   boot.initrd.luks.devices."luks-8fc7f13b-5114-4641-809e-127012324396".device = "/dev/disk/by-uuid/8fc7f13b-5114-4641-809e-127012324396";
   services.resolved.enable = true;
   networking.hostName = "praxis";
@@ -25,8 +28,16 @@
 
   # Enable networking
   networking.networkmanager.enable = true;
+  networking.networkmanager.unmanaged = [
+    "*tailscale*"
+    "*udev*"
+  ];
   networking.networkmanager.connectionConfig."connection.mdns" = 2;
-
+  systemd.services.NetworkManager-wait-online = {
+    serviceConfig = {
+      ExecStart = [ "" "${pkgs.networkmanager}/bin/nm-online -q" ];
+    };
+  };
   # Set your time zone.
   time.timeZone = "America/Los_Angeles";
 
@@ -228,8 +239,6 @@
     }
   '';
 
-  systemd.network.wait-online.enable = false;
-  boot.initrd.systemd.network.wait-online.enable = false;
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It‘s perfectly fine and recommended to leave
