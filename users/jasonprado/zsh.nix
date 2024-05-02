@@ -20,6 +20,7 @@
       odd = "open ~/Library/Developer/Xcode/DerivedData/";
       fdd = "find ~/Library/Developer/Xcode/DerivedData/* -name";
       mosh = "mosh --predict=never";
+      meshtastic = "/Users/jasonprado/Library/Python/3.9/bin/meshtastic";
 
       # boxes
       prax = "et praxist";

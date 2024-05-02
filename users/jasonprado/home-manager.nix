@@ -39,10 +39,14 @@ in
         btop
         devenv
         glances
+        cargo
+        gh
+        nodePackages.pnpm
         nodePackages.typescript
         nodejs_20
         vlc
         renameutils
+        rustc
         yarn
       ] ++ (if isLinux then [
         _1password-gui
