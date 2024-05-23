@@ -43,7 +43,6 @@ in
         postgresql
         ruff
         rustc
-        vlc
         yarn
         yq
         zulu8
@@ -56,6 +55,7 @@ in
         inkscape-with-extensions
         rofi
         slack
+        vlc
       ] else [
         getopt
       ]);
