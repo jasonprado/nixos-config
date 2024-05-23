@@ -17,17 +17,20 @@ in
       # )
     ];
 
+    # manual.manpages.enable = false;
     home.stateVersion = "23.05";
 
     fonts.fontconfig.enable = true;
     home.packages = with pkgs;
       [
+        any-nix-shell
         bazel-buildtools
         btop
         cargo
         devenv
         gh
         glances
+        git-absorb
         google-cloud-sdk
         kubectl
         kubernetes-helm
@@ -36,6 +39,8 @@ in
         nodePackages.pnpm
         nodePackages.typescript
         renameutils
+        nodejs_20
+        postgresql
         ruff
         rustc
         vlc
@@ -51,7 +56,9 @@ in
         inkscape-with-extensions
         rofi
         slack
-      ] else []);
+      ] else [
+        getopt
+      ]);
 
     programs = {
       direnv = {
@@ -102,6 +109,7 @@ in
       };
       zoxide = {
         enable = true;
+        enableZshIntegration = true;
       };
     };
 
@@ -138,4 +146,6 @@ in
       name = "capitaine-cursors";
       size = 16;
     };
-  } else {})
+  } else {
+    
+  })

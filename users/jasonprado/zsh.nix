@@ -1,9 +1,9 @@
 { pkgs, lib, ... }:
 {
   programs.zsh = {
-    enable = true; # default shell on catalina
+    enable = true;
     enableCompletion = true;
-    enableAutosuggestions = true;
+    autosuggestion.enable = true;
     syntaxHighlighting = {
       enable = true;
     };
@@ -15,10 +15,16 @@
       if [ -f ~/src/bin/chaws.sh ]; then
         source ~/src/bin/chaws.sh
       fi
+      if [ -f ~/src/FlightSystems/docker_fun.sh ]; then
+        export AWS_DEVBOX_ID=i-097054f55f4c1be1f
+        export DEVBOX_HOSTNAME=jason_prado_dev_machine
+        source ~/src/FlightSystems/docker_fun.sh
+      fi
       AWS_CONFIG_FILE="$HOME/src/cloud/build_tools/aws_configs/cloud_config"
       if [ -f "$AWS_CONFIG_FILE" ]; then
         export AWS_CONFIG_FILE="$AWS_CONFIG_FILE"
       fi
+      any-nix-shell zsh --info-right | source /dev/stdin
     '';
     shellAliases = {
       ll = "ls -l";
